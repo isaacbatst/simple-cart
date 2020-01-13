@@ -6,17 +6,17 @@ describe("test fixed and percentual coupons", () => {
     total: 22,
     shippingPrice: 2
   };
-  const discount = 5;
+  const rule = 5;
 
   it("should create a percentual coupon with correct values", () => {
-    const discountApplied = couponsDiscounts.percentual({ values, discount });
+    const discountApplied = couponsDiscounts.percentual({ values, rule });
 
     expect(discountApplied.value).toBe(1);
     expect(discountApplied.target).toEqual("total");
   });
 
   it("should create a fixed coupon with correct values", () => {
-    const discountApplied = couponsDiscounts.fixed({ discount });
+    const discountApplied = couponsDiscounts.fixed({ rule });
 
     expect(discountApplied.value).toBe(5);
     expect(discountApplied.target).toEqual("total");
@@ -33,7 +33,7 @@ describe("test free shipping coupons", () => {
   it("should create a free shipping coupon with a minimal subtotal", () => {
     const discountApplied = couponsDiscounts.freeShipping({
       values,
-      minimalSubtotal: 10
+      rule: 10
     });
 
     expect(discountApplied.value).toBe(values.shippingPrice);

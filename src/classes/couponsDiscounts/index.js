@@ -1,17 +1,17 @@
 export default {
-  percentual: ({ values: { subtotal }, discount }) => {
+  percentual: ({ values: { subtotal }, rule: discount }) => {
     return {
       value: subtotal * (discount / 100),
       target: "total"
     };
   },
-  fixed: ({ discount }) => {
+  fixed: ({ rule: discount }) => {
     return {
       value: discount,
       target: "total"
     };
   },
-  freeShipping: ({ values, minimalSubtotal }) => {
+  freeShipping: ({ values, rule: minimalSubtotal }) => {
     const target = "shippingPrice";
 
     if (values.subtotal >= minimalSubtotal) {
