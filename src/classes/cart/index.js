@@ -3,12 +3,8 @@ import update from "immutability-helper";
 
 export default state => {
   const updateItems = ({ product, newQuantity }) => {
-    if (state.items[product.id] && newQuantity > 0) {
+    if (newQuantity > 0) {
       return setQuantity({ product, newQuantity });
-    }
-
-    if (!state.items[product.id]) {
-      return addNewItem({product, newQuantity});
     }
 
     return removeItem(product);
@@ -18,28 +14,17 @@ export default state => {
     return update(state, {
       items: {
         [product.id]: {
-          $merge: {
-            quantity: newQuantity
+          $set: {
+            product,
+            quantity: newQuantity,
+            subtotal: newQuantity * product.pricePerKg
           }
         }
       }
     });
   };
 
-  function addNewItem({product, newQuantity}) {
-    return update(state, {
-      items: {
-        [product.id]: {
-          $set: {
-            product,
-            quantity: newQuantity
-          }
-        }
-      }
-    });
-  }
-
-  function removeItem(product) {
+  const removeItem = product => {
     return update(state, {
       items: {
         $unset: [product.id]
