@@ -31,9 +31,9 @@ export default function Cart() {
         ))}
       </div>
       <div id="values-div">
-        <span>Subtotal: {values.subtotal}</span>
-        <span>Shipping price: {values.shippingPrice}</span>
-        <span>Total: {values.total}</span>
+        <span>Subtotal: ${values.subtotal}</span>
+        <span>Shipping price: ${values.shippingPrice}</span>
+        <span>Total: ${values.total}</span>
       </div>
     </div>
   );
