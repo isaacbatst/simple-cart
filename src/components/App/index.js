@@ -9,6 +9,9 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
+        <div id="title">
+          <h1>Minercart</h1>
+        </div>
         <Cart />
       </div>
     </Provider>

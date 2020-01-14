@@ -14,7 +14,7 @@ export default function ProductRow({ product, onInputChange }) {
         onChange={event => onInputChange({ event, product })}
       />
      
-        <div className="product-prices"> {items[product.id] && `$${items[product.id].subtotal}`}</div>
+        <div className="product-prices"> {items[product.id] ? `$${items[product.id].subtotal}` : '-'}</div>
     </div>
   );
 }
