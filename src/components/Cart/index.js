@@ -10,6 +10,7 @@ export default function Cart() {
   const dispatch = useDispatch();
   const items = useSelector(state => state.items);
   const values = useSelector(state => state.values);
+  const weight = useSelector(state => state.weight);
 
   const handleInputChange = ({ event, product }) => {
     dispatch(updateItems({ product, newQuantity: event.target.value }));
@@ -31,6 +32,7 @@ export default function Cart() {
         ))}
       </div>
       <div id="values-div">
+        <span>Total weight: {weight} kg</span>
         <span>Subtotal: ${values.subtotal}</span>
         <span>Shipping price: ${values.shippingPrice}</span>
         <span>Total: ${values.total}</span>

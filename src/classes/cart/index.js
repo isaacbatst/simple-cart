@@ -2,15 +2,19 @@ import couponsDiscounts from "../couponsDiscounts";
 import update from "immutability-helper";
 
 export default state => {
+  const updateItemsAndWeight = ({ product, newQuantity }) => {
+    const stateWithUpdatedItems = updateItems({ product, newQuantity });
+    return updateWeight(stateWithUpdatedItems);
+  };
+
   const updateItems = ({ product, newQuantity }) => {
     if (newQuantity > 0) {
-      return setQuantity({ product, newQuantity });
+      return setNewQuantity({ product, newQuantity });
     }
-
     return removeItem(product);
   };
 
-  const setQuantity = ({ product, newQuantity }) => {
+  const setNewQuantity = ({ product, newQuantity }) => {
     return update(state, {
       items: {
         [product.id]: {
@@ -30,7 +34,20 @@ export default state => {
         $unset: [product.id]
       }
     });
-  }
+  };
+
+  const updateWeight = state => {
+    return update(state, {
+      weight: {
+        $set: Object.values(state.items).reduce(
+          (accumulatedWeight, { quantity }) => {
+            return accumulatedWeight + parseInt(quantity);
+          },
+          0
+        )
+      }
+    });
+  };
 
   const updateValues = () => {
     const newSubtotal = calcSubtotal();
@@ -83,7 +100,7 @@ export default state => {
   };
 
   return {
-    updateItems,
+    updateItemsAndWeight,
     applyCoupon,
     updateValues
   };
