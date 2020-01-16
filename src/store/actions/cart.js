@@ -4,3 +4,16 @@ export function updateCart(payload){
     payload
   }
 }
+
+export function applyCoupon(payload){
+  return {
+    type: 'APPLY_COUPON',
+    payload
+  }
+}
+
+export function removeCoupon(){
+  return {
+    type: 'REMOVE_COUPON',
+  }
+}

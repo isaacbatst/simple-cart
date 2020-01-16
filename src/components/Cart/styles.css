@@ -1,7 +1,7 @@
 #values-div{
   display: flex;
   flex-direction: column;
-  margin-top: 3em;
+  margin: 1em 0;
 }
 
 .cart-row{
@@ -16,3 +16,21 @@
   font-size: 2em;
 }
 
+#coupons-div{
+  display: flex;
+  justify-content: center;
+}
+
+.coupon-button{
+  width: 80px;
+  background: #9d9dba;
+  border: 2px solid #b9b9b9;
+  padding: 10px 10px;
+  border-radius: 4px;
+  color: white;
+  margin: 0em 2em;
+}
+
+.applied-coupon{
+  background: #55556b;
+}

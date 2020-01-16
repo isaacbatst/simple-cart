@@ -13,7 +13,7 @@ export default {
   },
   freeShipping: ({ values, rule: minimalSubtotal }) => {
     const target = "shippingPrice";
-
+    console.log(values.subtotal, minimalSubtotal)
     if (values.subtotal >= minimalSubtotal) {
       return {
         value: values.shippingPrice,

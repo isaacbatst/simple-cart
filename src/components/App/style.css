@@ -7,7 +7,7 @@
 }
 
 .container {
-  padding: 30px 100px;
+  padding: 30px 3em;
   display: flex;
   flex-direction: column;
   justify-content: center;

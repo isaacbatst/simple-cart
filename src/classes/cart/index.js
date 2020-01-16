@@ -69,7 +69,10 @@ export default state => {
 
     const { appliedCoupon } = state;
 
-    const couponDiscount = calcCouponDiscount(appliedCoupon);
+    const couponDiscount = calcCouponDiscount({
+      coupon: appliedCoupon,
+      state: newState
+    });
 
     return setValuesWithDiscount({ state: newState, couponDiscount });
 
@@ -102,7 +105,7 @@ export default state => {
     return 30 + Math.floor((weight - 10) / 5) * 7;
   };
 
-  const calcCouponDiscount = coupon => {
+  const calcCouponDiscount = ({ coupon, state }) => {
     return couponsDiscounts[coupon.type]({
       values: state.values,
       rule: coupon.rule
@@ -110,12 +113,14 @@ export default state => {
   };
 
   const applyCoupon = coupon => {
+    const stateWithoutCoupon = removeCoupon();
+
     if (!coupon) {
-      return removeCoupon();
+      return stateWithoutCoupon;
     }
 
-    const couponDiscount = calcCouponDiscount(coupon);
-    const newState = update(state, {
+    const couponDiscount = calcCouponDiscount({coupon, state: stateWithoutCoupon});
+    const newState = update(stateWithoutCoupon, {
       appliedCoupon: { $set: coupon }
     });
 
@@ -123,10 +128,12 @@ export default state => {
   };
 
   const setValuesWithDiscount = ({ couponDiscount, state }) => {
+    const targetResult =
+      state.values[couponDiscount.target] - couponDiscount.value;
     return update(state, {
       values: {
         [couponDiscount.target]: {
-          $set: state.values[couponDiscount.target] - couponDiscount.value
+          $set: targetResult < 0 ? 0 : targetResult
         }
       }
     });
