@@ -10,7 +10,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <div id="title">
-          <h1>Minercart</h1>
+          <h1>Cartminer</h1>
         </div>
         <Cart />
       </div>
