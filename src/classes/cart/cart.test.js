@@ -15,8 +15,14 @@ describe("test shipping price dynamic", () => {
   it("should return a free shipping price", () => {
     const stateWithItems = cart.updateItemsAndWeight({ product: products[0], newQuantity: 41 });
     const cartWithUpdatedValues = Cart(stateWithItems).updateValues();
-    console.log(cartWithUpdatedValues.values)
 
     expect(cartWithUpdatedValues.values.shippingPrice).toBe(0);
+  })
+
+  it("should return a shipping price of 44", () => {
+    const stateWithItems = cart.updateItemsAndWeight({ product: products[0], newQuantity: 20 });
+    const cartWithUpdatedValues = Cart(stateWithItems).updateValues();
+
+    expect(cartWithUpdatedValues.values.shippingPrice).toBe(44);
   })
 });
