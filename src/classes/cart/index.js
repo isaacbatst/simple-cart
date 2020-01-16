@@ -51,7 +51,9 @@ export default state => {
 
   const updateValues = () => {
     const newSubtotal = calcSubtotal();
-    const newShippingPrice = calcShippingPrice(stateWithNewSubtotal(newSubtotal));
+    const newShippingPrice = calcShippingPrice(
+      stateWithNewSubtotal(newSubtotal)
+    );
     const newState = update(state, {
       values: {
         subtotal: { $set: newSubtotal },
@@ -68,10 +70,10 @@ export default state => {
 
     return setValuesWithDiscount({ state: newState, couponDiscount });
 
-    function stateWithNewSubtotal(newSubtotal){
+    function stateWithNewSubtotal(newSubtotal) {
       return update(state, {
         values: { subtotal: { $set: newSubtotal } }
-      })
+      });
     }
   };
 
@@ -89,6 +91,8 @@ export default state => {
     if (values.subtotal > 400) {
       return 0;
     }
+
+    return 30 + ((weight - 10) / 5) * 7;
   };
 
   const calcCouponDiscount = coupon => {
