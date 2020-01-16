@@ -2,9 +2,10 @@ import couponsDiscounts from "../couponsDiscounts";
 import update from "immutability-helper";
 
 export default state => {
-  const updateItemsAndWeight = ({ product, newQuantity }) => {
+  const updateCart = ({ product, newQuantity }) => {
     const stateWithUpdatedItems = updateItems({ product, newQuantity });
-    return updateWeight(stateWithUpdatedItems);
+    const stateWithUpdatedItemsAndWeight = updateWeight(stateWithUpdatedItems);
+    return updateValues(stateWithUpdatedItemsAndWeight);
   };
 
   const updateItems = ({ product, newQuantity }) => {
@@ -49,8 +50,8 @@ export default state => {
     });
   };
 
-  const updateValues = () => {
-    const newSubtotal = calcSubtotal();
+  const updateValues = state => {
+    const newSubtotal = calcSubtotal(state.items);
     const newShippingPrice = calcShippingPrice(
       stateWithNewSubtotal(newSubtotal)
     );
@@ -66,7 +67,9 @@ export default state => {
       return newState;
     }
 
-    const couponDiscount = calcCouponDiscount(state.appliedCoupon);
+    const { appliedCoupon } = state;
+
+    const couponDiscount = calcCouponDiscount(appliedCoupon);
 
     return setValuesWithDiscount({ state: newState, couponDiscount });
 
@@ -77,8 +80,8 @@ export default state => {
     }
   };
 
-  const calcSubtotal = () => {
-    return Object.values(state.items).reduce((accumulated, item) => {
+  const calcSubtotal = items => {
+    return Object.values(items).reduce((accumulated, item) => {
       return accumulated + item.product.pricePerKg * item.quantity;
     }, 0);
   };
@@ -128,8 +131,7 @@ export default state => {
   const removeCoupon = () => {};
 
   return {
-    updateItemsAndWeight,
-    updateValues,
+    updateCart,
     applyCoupon,
     removeCoupon
   };
