@@ -15,10 +15,8 @@ export default function reducer(state = INITIAL_STATE, action) {
   const cart = Cart(state);
   console.log(state)
   switch (action.type) {
-    case "UPDATE_ITEMS":
-      return cart.updateItemsAndWeight(action.payload);
-    case "UPDATE_VALUES":
-      return cart.updateValues(action.payload);
+    case "UPDATE_CART":
+      return cart.updateCart(action.payload);
     default:
       return INITIAL_STATE;
   }

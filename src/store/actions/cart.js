@@ -1,13 +1,6 @@
-export function updateValues(payload){
+export function updateCart(payload){
   return {
-    type: 'UPDATE_VALUES',
-    payload
-  }
-}
-
-export function updateItems(payload){
-  return {
-    type: 'UPDATE_ITEMS',
+    type: 'UPDATE_CART',
     payload
   }
 }
