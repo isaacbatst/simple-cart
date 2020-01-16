@@ -1,6 +1,6 @@
 import Cart from "../../classes/cart";
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   items: {},
   appliedCoupon: null,
   weight: 0,
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 
 export default function reducer(state = INITIAL_STATE, action) {
   const cart = Cart(state);
-  console.log(state.items)
+  console.log(state)
   switch (action.type) {
     case "UPDATE_ITEMS":
       return cart.updateItemsAndWeight(action.payload);
