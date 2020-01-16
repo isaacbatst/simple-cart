@@ -1,28 +1,28 @@
-#values-div{
+#values-div {
   display: flex;
   flex-direction: column;
   margin: 1em 0;
 }
 
-.cart-row{
+.cart-row {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   padding: 5px 0px;
 }
 
-.cart-row .cart-title{
+.cart-row .cart-title {
   flex: 1;
   font-size: 2em;
 }
 
-#coupons-div{
+#coupons-div {
   display: flex;
   justify-content: center;
 }
 
-.coupon-button{
-  width: 80px;
+.coupon-button {
+  width: 90px;
   background: #9d9dba;
   border: 2px solid #b9b9b9;
   padding: 10px 10px;
@@ -31,6 +31,15 @@
   margin: 0em 2em;
 }
 
-.applied-coupon{
+#remove-coupon-button {
+  background: #ff3f3f;
+  border: 2px solid #b9b9b9;
+  padding: 10px 10px;
+  border-radius: 4px;
+  color: white;
+  margin: 0em 2em;
+}
+
+.applied-coupon {
   background: #55556b;
 }

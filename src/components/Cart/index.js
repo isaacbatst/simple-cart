@@ -76,7 +76,7 @@ export default function Cart() {
         <div>
           <p>{appliedCoupon.description}</p>
           <button id="remove-coupon-button" onClick={handleRemoveCoupon}>
-            Remove coupon
+            Remove it
           </button>
         </div>
       )}
