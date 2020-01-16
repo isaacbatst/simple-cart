@@ -1,0 +1,24 @@
+.product-name {
+  flex: 1;
+}
+
+.product-row input {
+  flex: 1;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px 0px;
+  align-items: center;
+}
+
+.product-row input {
+  margin: 5px 0px;
+  border: 1px solid #ddd;
+  height: 2em;
+  width: 5em;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.product-prices {
+  flex: 1;
+}

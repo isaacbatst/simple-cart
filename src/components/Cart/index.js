@@ -22,6 +22,11 @@ export default function Cart() {
 
   return (
     <div className="container">
+      <div className="cart-row">
+        <div className="cart-title">Fruits</div>
+        <div className="cart-title">KG</div>
+        <div className="cart-title">Price</div>
+      </div>
       <div>
         {products.map(product => (
           <ProductRow

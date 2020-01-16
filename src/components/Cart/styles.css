@@ -3,3 +3,16 @@
   flex-direction: column;
   margin-top: 3em;
 }
+
+.cart-row{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px 0px;
+}
+
+.cart-row .cart-title{
+  flex: 1;
+  font-size: 2em;
+}
+

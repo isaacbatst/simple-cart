@@ -5,7 +5,7 @@ import "./style.css";
 export default function ProductRow({ product, onInputChange }) {
   const items = useSelector(state => state.items);
   return (
-    <div className="product-row" key={product.id}>
+    <div className="product-row cart-row" key={product.id}>
       <span className="product-name">{product.name}</span>
       <input
         type="number"
