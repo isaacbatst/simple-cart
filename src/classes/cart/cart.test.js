@@ -11,4 +11,12 @@ describe("test shipping price dynamic", () => {
 
     expect(cartWithUpdatedValues.values.shippingPrice).toBe(30);
   });
+
+  it("should return a free shipping price", () => {
+    const stateWithItems = cart.updateItemsAndWeight({ product: products[0], newQuantity: 41 });
+    const cartWithUpdatedValues = Cart(stateWithItems).updateValues();
+    console.log(cartWithUpdatedValues.values)
+
+    expect(cartWithUpdatedValues.values.shippingPrice).toBe(0);
+  })
 });
