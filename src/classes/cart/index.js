@@ -84,6 +84,10 @@ export default state => {
   };
 
   const calcShippingPrice = ({ values, weight }) => {
+    if(values.subtotal === 0){
+      return 0;
+    }
+
     if (weight <= 10) {
       return 30;
     }
