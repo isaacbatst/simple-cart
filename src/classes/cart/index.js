@@ -110,6 +110,10 @@ export default state => {
   };
 
   const applyCoupon = coupon => {
+    if (!coupon) {
+      return removeCoupon();
+    }
+
     const couponDiscount = calcCouponDiscount(coupon);
     const newState = update(state, {
       appliedCoupon: { $set: coupon }
@@ -128,7 +132,12 @@ export default state => {
     });
   };
 
-  const removeCoupon = () => {};
+  const removeCoupon = () => {
+    const stateWithoutCoupon = update(state, {
+      appliedCoupon: { $set: null }
+    });
+    return updateValues(stateWithoutCoupon);
+  };
 
   return {
     updateCart,
