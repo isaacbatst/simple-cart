@@ -44,4 +44,11 @@ describe("test adding coupon", () => {
     }
   })
 
+  it("should return correct values after adding fixed discount", () => {
+    const cart = Cart(stateWithItems);
+    const { values: { total, subtotal, shippingPrice } }  = cart.applyCoupon(fixed);
+
+    expect(total).toBe(subtotal - fixed.rule + shippingPrice);
+  })
+
 })
