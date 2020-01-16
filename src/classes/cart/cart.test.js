@@ -19,10 +19,14 @@ describe("test shipping price dynamic", () => {
     expect(cartWithUpdatedValues.values.shippingPrice).toBe(0);
   })
 
-  it("should return a shipping price of 44", () => {
-    const stateWithItems = cart.updateItemsAndWeight({ product: products[0], newQuantity: 20 });
-    const cartWithUpdatedValues = Cart(stateWithItems).updateValues();
+  it("should return a shipping price based on how many 5kg above 10kg", () => {
+    const stateWithExactItems = cart.updateItemsAndWeight({ product: products[0], newQuantity: 20 });
+    const cartWithExactItems = Cart(stateWithExactItems).updateValues();
 
-    expect(cartWithUpdatedValues.values.shippingPrice).toBe(44);
+    expect(cartWithExactItems.values.shippingPrice).toBe(44);
+
+    const stateWithItemsInHalfway = cart.updateItemsAndWeight({product: products[1], newQuantity: 17})
+    const cartWithItemsInHalfway = Cart(stateWithItemsInHalfway).updateValues();
+    expect(cartWithItemsInHalfway.values.shippingPrice).toBe(37);
   })
 });

@@ -84,7 +84,7 @@ export default state => {
   };
 
   const calcShippingPrice = ({ values, weight }) => {
-    if(values.subtotal === 0){
+    if (values.subtotal === 0) {
       return 0;
     }
 
@@ -96,7 +96,7 @@ export default state => {
       return 0;
     }
 
-    return 30 + ((weight - 10) / 5) * 7;
+    return 30 + Math.floor((weight - 10) / 5) * 7;
   };
 
   const calcCouponDiscount = coupon => {
