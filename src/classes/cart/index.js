@@ -54,7 +54,8 @@ export default state => {
     const newState = update(state, {
       values: {
         subtotal: { $set: newSubtotal },
-        total: { $set: state.values.shippingPrice + newSubtotal }
+        total: { $set: state.values.shippingPrice + newSubtotal },
+        shippingPrice: { $set: calcShippingPrice(state) }
       }
     });
 
@@ -67,17 +68,23 @@ export default state => {
     return setValuesWithDiscount({ state: newState, couponDiscount });
   };
 
+  const calcSubtotal = () => {
+    return Object.values(state.items).reduce((accumulated, item) => {
+      return accumulated + item.product.pricePerKg * item.quantity;
+    }, 0);
+  };
+
+  const calcShippingPrice = ({ values, weight }) => {
+    if (weight <= 10) {
+      return 30;
+    }
+  };
+
   const calcCouponDiscount = coupon => {
     return couponsDiscounts[coupon.type]({
       values: state.values,
       rule: coupon.rule
     });
-  };
-
-  const calcSubtotal = () => {
-    return Object.values(state.items).reduce((accumulated, item) => {
-      return accumulated + item.product.pricePerKg * item.quantity;
-    }, 0);
   };
 
   const applyCoupon = coupon => {
@@ -99,9 +106,12 @@ export default state => {
     });
   };
 
+  const removeCoupon = () => {};
+
   return {
     updateItemsAndWeight,
+    updateValues,
     applyCoupon,
-    updateValues
+    removeCoupon
   };
 };
