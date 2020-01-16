@@ -51,4 +51,20 @@ describe("test adding coupon", () => {
     expect(total).toBe(subtotal - fixed.rule + shippingPrice);
   })
 
+  it("should return no free shipping after adding coupon", () => {
+    const cart = Cart(stateWithItems);
+    const { values: { shippingPrice } }  = cart.applyCoupon(freeShipping);
+    expect(shippingPrice).toBeGreaterThan(0);
+  })
+
+  it("should return no free shipping after adding coupon", () => {
+    const stateWithMuchMoreItems = emptyCart.updateCart({ product: products[0], newQuantity: 350 });
+
+    const cart = Cart(stateWithMuchMoreItems);
+    const { values: { shippingPrice, total, subtotal } }  = cart.applyCoupon(freeShipping);
+
+    expect(shippingPrice).toBe(0);
+    expect(total).toBe(subtotal);
+  })
+
 })
