@@ -13,7 +13,6 @@ export const INITIAL_STATE = {
 
 export default function reducer(state = INITIAL_STATE, action) {
   const cart = Cart(state);
-  console.log(state);
   switch (action.type) {
     case "UPDATE_CART":
       return cart.updateCart(action.payload);
@@ -21,6 +20,8 @@ export default function reducer(state = INITIAL_STATE, action) {
       return cart.applyCoupon(action.payload.coupon);
     case "REMOVE_COUPON":
       return cart.removeCoupon();
+    case "PURCHASE_CART":
+      return INITIAL_STATE
     default:
       return INITIAL_STATE;
   }

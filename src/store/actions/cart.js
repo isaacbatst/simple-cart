@@ -17,3 +17,9 @@ export function removeCoupon(){
     type: 'REMOVE_COUPON',
   }
 }
+
+export function purchaseCart(){
+  return {
+    type: 'PURCHASE_CART'
+  }
+}

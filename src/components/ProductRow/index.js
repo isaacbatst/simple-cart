@@ -4,6 +4,7 @@ import "./style.css";
 
 export default function ProductRow({ product, onInputChange }) {
   const items = useSelector(state => state.items);
+
   return (
     <div className="product-row cart-row" key={product.id}>
       <span className="product-name">{product.name}</span>
@@ -11,6 +12,7 @@ export default function ProductRow({ product, onInputChange }) {
         type="number"
         step="1"
         min={0}
+        value={items[product.id] ? items[product.id].quantity : 0 }
         className="product-quantity"
         onChange={event => onInputChange({ event, product })}
       />

@@ -43,3 +43,17 @@
 .applied-coupon {
   background: #55556b;
 }
+
+#checkout-button {
+  margin-top: 2em;
+  background: #47dd85;
+  border: 2px solid #94dfb9;
+  padding: 17px 10px;
+  border-radius: 4px;
+  color: white;
+  margin: 2em;
+}
+
+#purchase-message{
+  margin: 2em
+}
