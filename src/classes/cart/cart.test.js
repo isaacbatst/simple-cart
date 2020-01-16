@@ -6,8 +6,9 @@ describe("test shipping price dynamic", () => {
   const cart = Cart(INITIAL_STATE);
 
   it("should return a shipping price of 30", () => {
-    const updatedCart = cart.updateItemsAndWeight({ product: products[0], newQuantity: 3 });
+    const stateWithItems = cart.updateItemsAndWeight({ product: products[0], newQuantity: 3 });
+    const cartWithUpdatedValues = Cart(stateWithItems).updateValues();
 
-    expect(updatedCart.values.shippingPrice).toBe(30);
+    expect(cartWithUpdatedValues.values.shippingPrice).toBe(30);
   });
 });
