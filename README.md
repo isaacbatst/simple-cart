@@ -5,7 +5,7 @@ It's a simple cart bootstrapped with [Create React App](https://github.com/faceb
 
 It uses Jest for testing and redux for state management.
 
-It's hosted with Netlify's help at [relaxed-swirles-0dd249.netflify.com](relaxed-swirles-0dd249.netflify.com)
+It's hosted with Netlify's help at [http://relaxed-swirles-0dd249.netflify.com](http://relaxed-swirles-0dd249.netflify.com)
 
 Useful scripts:
 
